@@ -1,0 +1,44 @@
+<%- include('../components/header.html') %>
+<%- include('../components/navigation.html') %>
+<div class="container py-4">
+    <h3> Mis Comentarios</h3>
+    <table class="table py-4">
+        <thead class=" bg-dark text-white">
+            <tr>
+                <th scope="col"> Correo Electronico</th>
+                <th scope="col"> Comentario</th>
+                <th scope="col">Acciones</th>
+                <th></th>
+            </tr>
+        </thead>
+        <% if (arrayComentarios.length> 0) {%>
+            <%arrayComentarios.forEach(comentario=>{ %>
+                <tbody>
+                    <tr>
+                        <th>
+                            <%= comentario.email %>
+                        </th>
+                        <th>
+                            <%= comentario.comentario %>
+                        </th>
+                        <th>
+                          <a href="/comentarios/delete/<%= comentario.id %> " class="btn btn-danger btn-sm">Eliminar</a>
+                          <a href="/comentarios/estado/<%= comentario.id %>" class="btn <%= comentario.estado ? 'btn-success' : 'btn-warning' %> ">
+                        <%= comentario.estado ? 'Activado' : 'Desactivado' %> 
+                        </a>
+                        
+                        </th>
+                        <th>
+                            <a href="/comentarios/edit/<%= comentario.id %>" class="btn btn-info btn-sm" > Editar</a>
+                            
+                        </th>
+                    </tr>
+                    <%})%>
+                        <% }%>
+                </tbody>
+    </table>
+    <a href="/comentarios/drop" class="btn btn-danger btn-sm" > eliminar todi los comentarios</a>
+   
+</div>
+
+<%- include('../components/footer.html') %>
